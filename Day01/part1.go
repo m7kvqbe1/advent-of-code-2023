@@ -24,7 +24,7 @@ func main() {
 
 		// First
 		for _, char := range line {
-			if unicode.IsDigit(char) {
+			if unicode.IsDigit(rune(char)) {
 				firstDigit = int(char - '0')
 				break
 			}

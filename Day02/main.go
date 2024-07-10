@@ -35,29 +35,29 @@ func parseCounts(game string) (r []int, g []int, b []int) {
 	return r, g, b
 }
 
-// func isGamePossible(game string, maxR, maxG, maxB int) bool {
-// 	r, g, b := parseCounts(game)
+func isGamePossible(game string, maxR, maxG, maxB int) bool {
+	r, g, b := parseCounts(game)
 
-// 	for _, red := range r {
-// 		if red > maxRed {
-// 			return false
-// 		}
-// 	}
+	for _, red := range r {
+		if red > maxR {
+			return false
+		}
+	}
 
-// 	for _, green := range g {
-// 		if green > maxGreen {
-// 			return false
-// 		}
-// 	}
+	for _, green := range g {
+		if green > maxG {
+			return false
+		}
+	}
 
-// 	for _, blue := range b {
-// 		if blue > maxBlue {
-// 			return false
-// 		}
-// 	}
+	for _, blue := range b {
+		if blue > maxB {
+			return false
+		}
+	}
 
-// 	return true
-// }
+	return true
+}
 
 func minCubesRequired(game string) (int, int, int) {
 	r, g, b := parseCounts(game)

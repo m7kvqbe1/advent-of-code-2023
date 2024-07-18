@@ -1,4 +1,4 @@
-package main
+package day01
 
 import (
 	"bufio"
@@ -7,7 +7,7 @@ import (
 	"unicode"
 )
 
-func main() {
+func Part1() {
 	file, err := os.Open("input.txt")
 	if err != nil {
 		fmt.Println("Error opening input file:", err)

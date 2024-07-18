@@ -1,4 +1,4 @@
-package main
+package day02
 
 import (
 	"bufio"
@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func parseCounts(game string) (r []int, g []int, b []int) {
+func ParseCounts(game string) (r, g, b []int) {
 	re := regexp.MustCompile(`(\d+) (red|green|blue)`)
 
 	for _, subset := range strings.Split(strings.Split(game, ": ")[1], "; ") {
@@ -36,7 +36,7 @@ func parseCounts(game string) (r []int, g []int, b []int) {
 }
 
 func isGamePossible(game string, maxR, maxG, maxB int) bool {
-	r, g, b := parseCounts(game)
+	r, g, b := ParseCounts(game)
 
 	for _, red := range r {
 		if red > maxR {
@@ -59,25 +59,7 @@ func isGamePossible(game string, maxR, maxG, maxB int) bool {
 	return true
 }
 
-func minCubesRequired(game string) (int, int, int) {
-	r, g, b := parseCounts(game)
-
-	max := func(counts []int) int {
-		max := 0
-
-		for _, count := range counts {
-			if count > max {
-				max = count
-			}
-		}
-
-		return max
-	}
-
-	return max(r), max(g), max(b)
-}
-
-func main() {
+func Part1() {
 	file, err := os.Open("input.txt")
 	if err != nil {
 		fmt.Println("Error opening input file:", err)
@@ -85,25 +67,20 @@ func main() {
 	}
 	defer file.Close()
 
-	// maxR, maxG, maxB := 12, 13, 14
+	maxR, maxG, maxB := 12, 13, 14
 	sum := 0
 
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {
 		game := scanner.Text()
-		// re := regexp.MustCompile(`Game (\d+):`)
-		// match := re.FindStringSubmatch(game)
-		// gameID, _ := strconv.Atoi(match[1])
+		re := regexp.MustCompile(`Game (\d+):`)
+		match := re.FindStringSubmatch(game)
+		gameID, _ := strconv.Atoi(match[1])
 
-		// if isGamePossible(game, maxR, maxG, maxB) {
-		// 	sum += gameID
-		// }
-
-		minR, minG, minB := minCubesRequired(game)
-
-		power := minR * minG * minB
-		sum += power
+		if isGamePossible(game, maxR, maxG, maxB) {
+			sum += gameID
+		}
 	}
 
 	fmt.Printf("Sum of possible IDs: %d\n", sum)

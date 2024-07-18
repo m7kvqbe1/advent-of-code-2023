@@ -9,7 +9,7 @@ import (
 )
 
 func Part2() {
-	file, err := os.Open("input.txt")
+	file, err := os.Open("pkg/day01/input.txt")
 	if err != nil {
 		fmt.Println("Error opening input file:", err)
 		return

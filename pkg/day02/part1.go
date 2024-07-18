@@ -60,7 +60,7 @@ func isGamePossible(game string, maxR, maxG, maxB int) bool {
 }
 
 func Part1() {
-	file, err := os.Open("input.txt")
+	file, err := os.Open("pkg/day02/input.txt")
 	if err != nil {
 		fmt.Println("Error opening input file:", err)
 		return
